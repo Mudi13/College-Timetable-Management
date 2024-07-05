@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Timetable Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        header {
+            background: #333;
+            color: #fff;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #77b300 3px solid;
+        }
+
+        header a {
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 16px;
+        }
+
+        header ul {
+            padding: 0;
+            list-style: none;
+            margin: 0;
+        }
+
+        header li {
+            display: inline;
+            padding: 0 20px 0 20px;
+        }
+
+        .timetable {
+            margin: 20px 0;
+        }
+
+        .timetable table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .timetable th,
+        .timetable td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .timetable th {
+            background-color: #f2f2f2;
+        }
+
+        .form-container {
+            margin: 20px 0;
+        }
+
+        .form-container input,
+        .form-container select {
+            padding: 10px;
+            margin: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .form-container button {
+            padding: 10px 15px;
+            background-color: #77b300;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1>College Timetable Management System</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="timetable">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Monday</th>
+                        <th>Tuesday</th>
+                        <th>Wednesday</th>
+                        <th>Thursday</th>
+                        <th>Friday</th>
+                    </tr>
+                </thead>
+                <tbody id="timetable-body">
+                    <tr>
+                        <td>9:00 - 10:00</td>
+                        <td>GAMES</td>
+                        <td>ENGLISH</td>
+                        <td>ACCOUNTS</td>
+                        <td>ECONOMICS</td>
+                        <td>BUSINESS</td>
+                    </tr>
+                    <tr>
+                        <td>10:00 - 11:00</td>
+                        <td>ECONOMICS</td>
+                        <td>ACCOUNTS</td>
+                        <td>BUSINESS</td>
+                        <td>GAMES</td>
+                        <td>OPTIONAL</td>
+                    </tr>
+                    <!-- Add more rows as needed -->
+                </tbody>
+            </table>
+        </div>
+
+        <div class="form-container">
+            <h2>Add Class</h2>
+            <form id="class-form">
+                <label for="day">Day:</label>
+                <select id="day">
+                    <option value="0">Monday</option>
+                    <option value="1">Tuesday</option>
+                    <option value="2">Wednesday</option>
+                    <option value="3">Thursday</option>
+                    <option value="4">Friday</option>
+                </select>
+                <label for="time-slot">Time Slot:</label>
+                <select id="time-slot">
+                    <option value="0">9:00 - 10:00</option>
+                    <option value="1">10:00 - 11:00</option>
+                    <!-- Add more options as needed -->
+                </select>
+                <label for="class-name">Class Name:</label>
+                <input type="text" id="class-name" required>
+                <button type="submit">Add Class</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('class-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const day = document.getElementById('day').value;
+            const timeSlot = document.getElementById('time-slot').value;
+            const className = document.getElementById('class-name').value;
+
+            const timetableBody = document.getElementById('timetable-body');
+            const row = timetableBody.rows[timeSlot];
+            const cell = row.cells[parseInt(day) + 1];
+
+            cell.innerHTML = className;
+        });
+    </script>
+</body>
+
+</html>
